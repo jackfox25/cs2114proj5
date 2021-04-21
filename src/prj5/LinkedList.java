@@ -195,14 +195,15 @@ public class LinkedList<T> implements ListInterface<T> {
         if (isEmpty()) {
             return null;
         }
-        if (index < 0 || index > size) {
+        if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException("Index is out of bounds");
         }
         
         Node<T> current = head;
-        if (index >= 0 && index < size) {
-            return 
+        for (int i = 0; i <= index; i++) {
+            current = current.next();
         }
+        return current.getData();
         
     }
 
