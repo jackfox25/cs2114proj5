@@ -1,6 +1,5 @@
 package prj5;
 
-import linkedlist.SinglyLinkedList.Node;
 import list.ListInterface;
 
 public class LinkedList<T> implements ListInterface<T> {
