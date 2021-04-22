@@ -1,4 +1,4 @@
-package covidvisualizer;
+package prj5;
 
 /**
  * State class that contains the attributes of each state within the
