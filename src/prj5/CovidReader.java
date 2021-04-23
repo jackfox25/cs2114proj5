@@ -1,4 +1,4 @@
-package covidvisualizer;
+package prj5;
 
 import java.io.*;
 import java.util.Comparator;
