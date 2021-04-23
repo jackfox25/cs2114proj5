@@ -34,7 +34,7 @@ public class RaceTest extends student.TestCase {
      * tests getNumberOfCases()
      */
     public void testGetCaseNum() {
-        assertEquals(1, race1.getNumberOfCases());
+        assertEquals(1, race1.getCases());
     }
 
 
@@ -50,8 +50,8 @@ public class RaceTest extends student.TestCase {
      * tests setNumberOfCases()
      */
     public void testSetNumberOfCases() {
-        race1.setNumberOfCases(6);
-        assertEquals(6, race1.getNumberOfCases());
+        race1.setCases(6);
+        assertEquals(6, race1.getCases());
     }
 
 
@@ -69,7 +69,7 @@ public class RaceTest extends student.TestCase {
      */
     public void testGetCFR() {
         race1.setDeaths(1);
-        race1.setNumberOfCases(1);
+        race1.setCases(1);
         assertEquals(100, race1.getCFR(), .1);
         assertEquals(-1, race2.getCFR(), .1);
     }
