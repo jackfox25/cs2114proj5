@@ -66,12 +66,12 @@ public class CovidCalculator {
      */
     public ArrayList<Race> sortByCFR(State state) {
         Race[] races = state.getRaces();
-        ArrayList<Race> raceList = new ArrayList<Race>(Arrays.asList(races));
-        Collections.sort(raceList, new CFRsort());
-        for (int i = 0; i < raceList.size(); i++) {
-            System.out.println(raceList.get(i).toString());
+        ArrayList<Race> list = new ArrayList<Race>(Arrays.asList(races));
+        Collections.sort(list, new CFRsort());
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println(list.get(i).toString());
         }
-        return raceList;
+        return list;
     }
 
     /**
