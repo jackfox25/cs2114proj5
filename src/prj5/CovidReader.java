@@ -35,7 +35,6 @@ public class CovidReader {
         ParseException {
 
         stateList = readStates(file);
-
     }
 
 
@@ -73,29 +72,39 @@ public class CovidReader {
 
             String[] rNames = { "white", "black", "latinx", "asian", "other" };
             Race[] raceData = new Race[5];
-            
+
             for (int i = 0; i < 5; i++) {
                 // grab race name
                 String rName = rNames[i];
-                
+
                 // parse cases
                 String cStr = parsedIn[i + 1];
                 int cNum = cStr == "NA" ? -1 : Integer.valueOf(cStr);
-                
+
                 // parse deaths
                 String dStr = parsedIn[i + 6];
                 int dNum = dStr == "NA" ? -1 : Integer.valueOf(dStr);
-                
+
                 Race race_i = new Race(rName, cNum, dNum);
                 raceData[i] = race_i;
             }
 
             State newState = new State(stateName, raceData);
             stateList.add(newState);
-      
+
         }
 
         file.close();
+        return stateList;
+    }
+
+
+    /**
+     * Getter method used for testing.
+     * 
+     * @return stateList.
+     */
+    public LinkedList<State> getStateList() {
         return stateList;
     }
 

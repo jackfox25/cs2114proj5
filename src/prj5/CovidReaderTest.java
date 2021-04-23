@@ -3,6 +3,8 @@
  */
 package prj5;
 
+import java.io.FileNotFoundException;
+import bsh.ParseException;
 import student.TestCase;
 
 /**
@@ -12,8 +14,31 @@ import student.TestCase;
  * @version 2021.04.23
  *
  */
+
+//As a Hokie, I will conduct myself with honor and integrity at all times.
+//I will not lie, cheat, or steal, nor will I accept the actions of those who
+//do.
+//-- Jack Fox (jackf19)
+
 public class CovidReaderTest extends TestCase {
 
-    
-    
+    /**
+     * Creates test scenario for test case.
+     */
+    public void setUp() {
+        // intentionally blank
+    }
+
+
+    /**
+     * Calls covidReader constructor, then asserts states were instantiated
+     * correctly.
+     * @throws ParseException 
+     * @throws FileNotFoundException 
+     */
+    public void testReadStates() throws FileNotFoundException, ParseException {
+        String fileName = "Cases_and_Deaths_by_race_CRDT_Sep2020.csv";
+        CovidReader covRead = new CovidReader(fileName);
+    }
+
 }
