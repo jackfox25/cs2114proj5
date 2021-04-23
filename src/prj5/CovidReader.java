@@ -1,9 +1,7 @@
-/**
- * 
- */
-package prj5;
+package covidvisualizer;
 
 import java.io.*;
+import java.util.Comparator;
 import java.util.Scanner;
 import bsh.ParseException;
 
@@ -85,11 +83,27 @@ public class CovidReader {
                 int dNum = dStr.equals("NA") ? -1 : Integer.valueOf(dStr);
 
                 Race race_i = new Race(rName, cNum, dNum);
-                raceData.add(race_i);;
+                raceData.add(race_i);
+                ;
             }
 
             State newState = new State(stateName, raceData);
             stateList.add(newState);
+
+        }
+
+        for (int i = 0; i < stateList.getLength(); i++) { // Here is the
+                                                          // comparator sorts
+            State currState = stateList.getEntry(i);
+            System.out.println(currState.getName());
+
+            AlphaSort alpha = new AlphaSort();
+            currState.getRaces().insertionSort(alpha);
+            System.out.println(currState);
+
+            CFRsort cfr = new CFRsort();
+            currState.getRaces().insertionSort(cfr);
+            System.out.println(currState);
 
         }
 
@@ -105,6 +119,46 @@ public class CovidReader {
      */
     public LinkedList<State> getStateList() {
         return stateList;
+    }
+
+    private class CFRsort implements Comparator<Race> {
+
+        /**
+         * Compares two races
+         * 
+         * @param x
+         *            first race
+         * @param y
+         *            second race
+         * @return compareTo value
+         */
+        public int compare(Race x, Race y) {
+            return (int)((x.getCFR() - y.getCFR()) * 100);
+        }
+    }
+
+
+    /**
+     * Class with comparator for Alphabetical
+     * 
+     * @author Ethan Homoroc (homorocethanj22)
+     * @version 04.19.21
+     *
+     */
+    private class AlphaSort implements Comparator<Race> {
+
+        /**
+         * Compares two races
+         * 
+         * @param x
+         *            first race
+         * @param y
+         *            second race
+         * @return compareTo value
+         */
+        public int compare(Race x, Race y) {
+            return x.getName().compareTo(y.getName());
+        }
     }
 
 }
