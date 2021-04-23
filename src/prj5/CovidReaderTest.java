@@ -29,12 +29,9 @@ public class CovidReaderTest extends TestCase {
         // intentionally blank
     }
 
-    public void testTestCase() {
-        assertEquals(2, 1+1);
-    }
 
     /**
-     * Calls covidReader constructor, then asserts states were instantiated
+     * Calls CovidReader constructor, then asserts states were instantiated
      * correctly.
      * @throws ParseException 
      * @throws FileNotFoundException 
@@ -43,6 +40,9 @@ public class CovidReaderTest extends TestCase {
         String fileName = "input1.txt";
         assertEquals(2, 1+1);
         CovidReader covRead = new CovidReader(fileName);
+        
+        LinkedList<State> stateList = covRead.getStateList();
+        
     }
 
 }
