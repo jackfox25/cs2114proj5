@@ -218,14 +218,6 @@ public class LinkedList<T> implements ListInterface<T> {
 
 
     /**
-     * Returns the size of the list.
-     */
-    public int getSize() {
-        return size;
-    }
-
-
-    /**
      * Checks if the list is empty or not.
      */
     @Override
@@ -351,7 +343,7 @@ public class LinkedList<T> implements ListInterface<T> {
         if (this.getClass() == obj.getClass()) {
             @SuppressWarnings("unchecked")
             LinkedList<T> other = ((LinkedList<T>)obj);
-            if (other.getSize() == this.getSize()) {
+            if (other.getLength() == this.getLength()) {
                 Node<T> current = head;
                 Node<T> otherCurrent = other.head;
                 while (current != null) {

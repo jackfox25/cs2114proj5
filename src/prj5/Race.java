@@ -39,7 +39,7 @@ public class Race {
      * @param num
      *            number of cases
      */
-    public void setNumberOfCases(int num) {
+    public void setCases(int num) {
         cases = num;
     }
 
@@ -70,7 +70,7 @@ public class Race {
      * 
      * @return return the number of cases
      */
-    public int getNumberOfCases() {
+    public int getCases() {
         return cases;
     }
 
