@@ -15,7 +15,7 @@ import java.util.Comparator;
  */
 public class CovidCalculator {
 
-    private LinkedList<State> statesList;
+    private LinkedList<State> stateList;
 
     /**
      * Constructor
@@ -24,7 +24,7 @@ public class CovidCalculator {
      *            LinkedList that gets passed
      */
     public CovidCalculator(LinkedList<State> states) {
-        statesList = states;
+        stateList = states;
     }
 
 
@@ -34,7 +34,7 @@ public class CovidCalculator {
      * @return List with states
      */
     public LinkedList<State> getList() {
-        return statesList;
+        return stateList;
     }
 
 
