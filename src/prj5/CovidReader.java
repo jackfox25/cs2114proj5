@@ -55,13 +55,12 @@ public class CovidReader {
 
         LinkedList<State> stateList = new LinkedList<State>();
 
-        int stateCount = 0;
         // skips description line in file
         file.nextLine();
 
         while (file.hasNextLine()) {
             String nextIn = file.nextLine();
-            String[] parsedIn = nextIn.split(",*");
+            String[] parsedIn = nextIn.split(", *");
             if (parsedIn.length != 11) {
                 file.close();
                 throw new ParseException("incorrect data format");
@@ -71,7 +70,7 @@ public class CovidReader {
             System.out.println(stateName);
 
             String[] rNames = { "white", "black", "latinx", "asian", "other" };
-            Race[] raceData = new Race[5];
+            LinkedList<Race> raceData = new LinkedList<Race>();
 
             for (int i = 0; i < 5; i++) {
                 // grab race name
@@ -79,14 +78,14 @@ public class CovidReader {
 
                 // parse cases
                 String cStr = parsedIn[i + 1];
-                int cNum = cStr == "NA" ? -1 : Integer.valueOf(cStr);
+                int cNum = cStr.equals("NA") ? -1 : Integer.valueOf(cStr);
 
                 // parse deaths
                 String dStr = parsedIn[i + 6];
-                int dNum = dStr == "NA" ? -1 : Integer.valueOf(dStr);
+                int dNum = dStr.equals("NA") ? -1 : Integer.valueOf(dStr);
 
                 Race race_i = new Race(rName, cNum, dNum);
-                raceData[i] = race_i;
+                raceData.add(race_i);;
             }
 
             State newState = new State(stateName, raceData);

@@ -29,6 +29,9 @@ public class CovidReaderTest extends TestCase {
         // intentionally blank
     }
 
+    public void testTestCase() {
+        assertEquals(2, 1+1);
+    }
 
     /**
      * Calls covidReader constructor, then asserts states were instantiated
@@ -37,7 +40,8 @@ public class CovidReaderTest extends TestCase {
      * @throws FileNotFoundException 
      */
     public void testReadStates() throws FileNotFoundException, ParseException {
-        String fileName = "Cases_and_Deaths_by_race_CRDT_Sep2020.csv";
+        String fileName = "input1.txt";
+        assertEquals(2, 1+1);
         CovidReader covRead = new CovidReader(fileName);
     }
 

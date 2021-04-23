@@ -88,13 +88,14 @@ public class LinkedList<T> implements ListInterface<T> {
         if (isEmpty()) {
             head = new Node<T>(anEntry);
         }
+        else {
+            Node<T> current = head;
 
-        Node<T> current = head;
-
-        while (current.next != null) {
-            current = current.next;
+            while (current.next != null) {
+                current = current.next;
+            }
+            current.setNext(new Node<T>(anEntry));
         }
-        current.setNext(new Node<T>(anEntry));
         size++;
     }
 

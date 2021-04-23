@@ -8,5 +8,6 @@
 	</classpathentry>
 	<classpathentry combineaccessrules="false" kind="src" path="/CS2DataStructuresLib"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/CS2-Support"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/setup"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
