@@ -67,7 +67,7 @@ public class State {
      * @return
      *         the races in an array.
      */
-    public Races[] getRaces() {
+    public Race[] getRaces() {
         return races;
     }
 
