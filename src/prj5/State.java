@@ -4,12 +4,10 @@ package prj5;
  * State class that contains the attributes of each state within the
  * visualization.
  *
- * @param <T>
- *            This is the type of object that this class will store
  * @author Giri Ganta (gantagiri4)
  * @version 2021.04.19
  */
-public class State<T> {
+public class State {
     // fields
     private String name;
     private int totalCases;
