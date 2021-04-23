@@ -1,4 +1,4 @@
-package prj5;
+package covidvisualizer;
 
 /**
  * State class that contains the attributes of each state within the
@@ -10,6 +10,8 @@ package prj5;
 public class State {
     // fields
     private String name;
+    private int totalCases;
+    private int totalDeaths;
     private LinkedList<Race> races;
 
     /**
@@ -34,6 +36,28 @@ public class State {
      */
     public String getName() {
         return name;
+    }
+
+
+    /**
+     * Getter method to get the number of total cases for the state.
+     * 
+     * @return
+     *         the number of total cases.
+     */
+    public int getTotalCases() {
+        return totalCases;
+    }
+
+
+    /**
+     * Getter method to get the number of total deaths for the state.
+     * 
+     * @return
+     *         the number of total deaths.
+     */
+    public int getTotalDeaths() {
+        return totalDeaths;
     }
 
 
