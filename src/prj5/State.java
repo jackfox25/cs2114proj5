@@ -14,7 +14,7 @@ public class State<T> {
     private String name;
     private int totalCases;
     private int totalDeaths;
-    private LinkedList<T> races;
+    private Race[] races;
 
     /**
      * Makes a new State Object.
@@ -26,15 +26,9 @@ public class State<T> {
      * @param totalDeaths
      *            the total deaths caused by COVID in the state.
      */
-    public State(
-        String name,
-        int totalCases,
-        int totalDeaths,
-        LinkedList<T> race) {
-        this.name = name;
-        this.totalCases = totalCases;
-        this.totalDeaths = totalDeaths;
-        race = new LinkedList<T>();
+    public State(String stateName, Race[] race) {
+        name = stateName;
+        races = race;
     }
 
 
@@ -77,7 +71,7 @@ public class State<T> {
      * @return
      *         the races in a linked list.
      */
-    public LinkedList<T> getRaces() {
+    public Races[] getRaces() {
         return races;
     }
 
