@@ -21,10 +21,8 @@ public class State<T> {
      * 
      * @param name
      *            the name of the state.
-     * @param totalCases
-     *            the total COVID cases in the state.
-     * @param totalDeaths
-     *            the total deaths caused by COVID in the state.
+     * @param race
+     *            races in an array
      */
     public State(String stateName, Race[] race) {
         name = stateName;
@@ -69,7 +67,7 @@ public class State<T> {
      * Getter method to get the races of the state.
      * 
      * @return
-     *         the races in a linked list.
+     *         the races in an array.
      */
     public Races[] getRaces() {
         return races;
