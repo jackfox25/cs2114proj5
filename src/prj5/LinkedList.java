@@ -5,11 +5,11 @@ import list.ListInterface;
 public class LinkedList<T> implements ListInterface<T> {
 
     /**
-     *
-     *            This is the type of object that this class will store
-     * @author Giri Ganta (gantagiri4)
-     * @version 2021.04.19
-     */
+    * This class tests the methods implemented within Linked List.
+    * 
+    * @author Giri Ganta (gantagiri4)
+    * @version 2021.04.23
+    */
     public static class Node<D> {
 
         // The data element stored in the node.
