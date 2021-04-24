@@ -1,4 +1,4 @@
-package prj5;
+package covidvisualizer;
 
 import list.ListInterface;
 
@@ -243,6 +243,7 @@ public class LinkedList<T> implements ListInterface<T> {
             if (index == 0) {
                 result = head.getData();
                 head = head.next;
+                size--;
             }
             else {
                 Node<T> current = head;
@@ -253,6 +254,7 @@ public class LinkedList<T> implements ListInterface<T> {
                 }
                 result = current.next.getData();
                 current.next = current.next.next;
+                size--;
             }
         }
         else {
