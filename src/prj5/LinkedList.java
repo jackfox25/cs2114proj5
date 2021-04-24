@@ -413,5 +413,49 @@ public class LinkedList<T> implements ListInterface<T> {
     public int getLength() {
         return size;
     }
+    
+    /**
+     * Split the list into sorted and unsorted and iterates through unsorted to
+     * insert into sorted
+     */
+    public void insertionSort() {
+        if (getLength() > 1) {
+            Node<T> unsorted = head.next;
+            Node<T> sorted = head;
+            sorted.setNext(null);
+
+            while (unsorted != null) {
+                Node<T> insert = unsorted;
+                unsorted = unsorted.next;
+                insertIntoSorted(insert);
+            }
+        }
+    }
+
+
+    /**
+     * Helper method to insert node into proper location
+     * 
+     * @param nodeToInsert
+     */
+    public void insertIntoSorted(Node<T> nodeToInsert) {
+        T data = nodeToInsert.getData();
+        Node<T> current = head;
+        Node<T> previous = null;
+
+        while ((current != null) && (data.compareTo(current.getData()) > 0)) {
+            previous = current;
+            current = current.next;
+        }
+        if (previous != null) {
+            previous.setNext(nodeToInsert);
+            nodeToInsert.setNext(current);
+        }
+
+        else {
+            nodeToInsert.setNext(head);
+            head = nodeToInsert;
+        }
+    }
 
 }
