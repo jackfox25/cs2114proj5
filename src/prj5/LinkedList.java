@@ -5,10 +5,7 @@ import list.ListInterface;
 public class LinkedList<T> implements ListInterface<T> {
 
     /**
-     * This represents a node in a singly linked list. This node stores data
-     * along with having a pointer to the next node in the list
      *
-     * @param <T>
      *            This is the type of object that this class will store
      * @author Giri Ganta (gantagiri4)
      * @version 2021.04.19
