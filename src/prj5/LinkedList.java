@@ -1,4 +1,4 @@
-package covidvisualizer;
+package prj5;
 
 import list.ListInterface;
 
