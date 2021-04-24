@@ -61,5 +61,6 @@ public class CovidReaderTest extends TestCase {
         assertEquals(5, state1.getRaces().getLength());
         
     }
+    
 
 }
