@@ -25,6 +25,8 @@ public class State {
     public State(String stateName, LinkedList<Race> race) {
         name = stateName;
         races = race;
+        setTotalCases();
+        setTotalDeaths();
     }
 
 
@@ -69,6 +71,34 @@ public class State {
      */
     public LinkedList<Race> getRaces() {
         return races;
+    }
+    
+    
+    /**
+     * Sets totalCases field.
+     */
+    public void setTotalCases() {
+        totalCases = 0;
+        for (int i = 0; i < 5; i++) {
+            Race race = getRaces().getEntry(i);
+            int raceCases = race.getCases();
+            int addToField = raceCases == -1 ? 0 : raceCases;
+            totalCases += addToField;
+        }
+    }
+    
+    
+    /**
+     * Sets totalDeaths field.
+     */
+    public void setTotalDeaths() {
+        totalDeaths = 0;
+        for (int i = 0; i < 5; i++) {
+            Race race = getRaces().getEntry(i);
+            int raceDeaths = race.getDeaths();
+            int addToField = raceDeaths == -1 ? 0 : raceDeaths;
+            totalDeaths += addToField;
+        }
     }
 
 }
