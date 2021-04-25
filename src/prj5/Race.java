@@ -98,7 +98,7 @@ public class Race {
         DecimalFormat df = new DecimalFormat("##.#");
         df.setRoundingMode(RoundingMode.DOWN);
         double cfr = ((double)deaths / (double)cases) * 100;
-        return Integer.parseInt(df.format(cfr));
+        return (double)Integer.parseInt(df.format(cfr));
     }
 
 

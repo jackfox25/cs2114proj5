@@ -1,15 +1,16 @@
 package prj5;
 
+import java.util.Comparator;
 import list.ListInterface;
 
 public class LinkedList<T> implements ListInterface<T> {
 
     /**
-    * This class tests the methods implemented within Linked List.
-    * 
-    * @author Giri Ganta (gantagiri4)
-    * @version 2021.04.23
-    */
+     * This class tests the methods implemented within Linked List.
+     * 
+     * @author Giri Ganta (gantagiri4)
+     * @version 2021.04.23
+     */
     public static class Node<D> {
 
         // The data element stored in the node.
@@ -413,12 +414,13 @@ public class LinkedList<T> implements ListInterface<T> {
     public int getLength() {
         return size;
     }
-    
+
+
     /**
      * Split the list into sorted and unsorted and iterates through unsorted to
      * insert into sorted
      */
-    public void insertionSort() {
+    public void insertionSort(Comparator<Race> comp) {
         if (getLength() > 1) {
             Node<T> unsorted = head.next;
             Node<T> sorted = head;
@@ -427,7 +429,7 @@ public class LinkedList<T> implements ListInterface<T> {
             while (unsorted != null) {
                 Node<T> insert = unsorted;
                 unsorted = unsorted.next;
-                insertIntoSorted(insert);
+                insertIntoSorted(insert, comp);
             }
         }
     }
@@ -438,15 +440,17 @@ public class LinkedList<T> implements ListInterface<T> {
      * 
      * @param nodeToInsert
      */
-    public void insertIntoSorted(Node<T> nodeToInsert) {
-        T data = nodeToInsert.getData();
+    public void insertIntoSorted(Node<T> nodeToInsert, Comparator<Race> comp) {
+        Race data = (Race)nodeToInsert.getData();
         Node<T> current = head;
         Node<T> previous = null;
 
-        while ((current != null) && (data.compareTo(current.getData()) > 0)) {
+        while ((current != null) && (comp.compare(data, (Race)current
+            .getData()) > 0)) {
             previous = current;
             current = current.next;
         }
+
         if (previous != null) {
             previous.setNext(nodeToInsert);
             nodeToInsert.setNext(current);

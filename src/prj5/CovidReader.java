@@ -1,7 +1,6 @@
 package prj5;
 
 import java.io.*;
-import java.util.Comparator;
 import java.util.Scanner;
 import bsh.ParseException;
 
@@ -101,7 +100,7 @@ public class CovidReader {
             currState.getRaces().insertionSort(alpha);
             System.out.println(currState);
 
-            CFRsort cfr = new CFRsort();
+            CFRSort cfr = new CFRSort();
             currState.getRaces().insertionSort(cfr);
             System.out.println(currState);
 
@@ -119,46 +118,6 @@ public class CovidReader {
      */
     public LinkedList<State> getStateList() {
         return stateList;
-    }
-
-    private class CFRsort implements Comparator<Race> {
-
-        /**
-         * Compares two races
-         * 
-         * @param x
-         *            first race
-         * @param y
-         *            second race
-         * @return compareTo value
-         */
-        public int compare(Race x, Race y) {
-            return (int)((x.getCFR() - y.getCFR()) * 100);
-        }
-    }
-
-
-    /**
-     * Class with comparator for Alphabetical
-     * 
-     * @author Ethan Homoroc (homorocethanj22)
-     * @version 04.19.21
-     *
-     */
-    private class AlphaSort implements Comparator<Race> {
-
-        /**
-         * Compares two races
-         * 
-         * @param x
-         *            first race
-         * @param y
-         *            second race
-         * @return compareTo value
-         */
-        public int compare(Race x, Race y) {
-            return x.getName().compareTo(y.getName());
-        }
     }
 
 }
