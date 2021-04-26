@@ -75,14 +75,13 @@ public class RaceTest extends student.TestCase {
     }
 
 
-//    /**
-//     * tests toString()
-//     */
-//    public void testToString() {
-//        assertEquals("asian: 1 cases, 200% CFR", race1.toString());
-//        assertTrue(race2.toString().equals("white: -1 cases, -1% CFR"));
-//        // change this one
-//        assertTrue(race3.toString().equals("black: 100 cases, 1% CFR"));
-//
-//    }
+    /**
+     * tests toString()
+     */
+    public void testToString() {
+        assertEquals("asian: 3 cases, 33.3% CFR", race1.toString());
+        assertEquals("white: -1 cases, -1% CFR", race2.toString());
+        assertEquals("black: 145 cases, 11% CFR", race3.toString());
+
+    }
 }

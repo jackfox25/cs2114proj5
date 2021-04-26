@@ -21,7 +21,7 @@ public class CFRSort implements Comparator<Race> {
      *            second race
      * @return compareTo value
      */
-    public int compare(Race x, Race y) {
+    public int compare(Race y, Race x) {
         return (int)((x.getCFR() - y.getCFR()) * 100);
     }
     

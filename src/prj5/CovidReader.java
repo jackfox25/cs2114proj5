@@ -32,6 +32,8 @@ public class CovidReader {
         ParseException {
 
         stateList = readStates(file);
+
+        sortData();
     }
 
 
@@ -64,7 +66,6 @@ public class CovidReader {
             }
 
             String stateName = parsedIn[0];
-            System.out.println(stateName);
 
             String[] rNames = { "white", "black", "latinx", "asian", "other" };
             LinkedList<Race> raceData = new LinkedList<Race>();
@@ -91,21 +92,6 @@ public class CovidReader {
 
         }
 
-        for (int i = 0; i < stateList.getLength(); i++) { // Here is the
-                                                          // comparator sorts
-            State currState = stateList.getEntry(i);
-            System.out.println(currState.getName());
-
-            AlphaSort alpha = new AlphaSort();
-            currState.getRaces().insertionSort(alpha);
-            System.out.println(currState);
-
-            CFRSort cfr = new CFRSort();
-            currState.getRaces().insertionSort(cfr);
-            System.out.println(currState);
-
-        }
-
         file.close();
         return stateList;
     }
@@ -118,6 +104,42 @@ public class CovidReader {
      */
     public LinkedList<State> getStateList() {
         return stateList;
+    }
+
+
+    /**
+     * Sorts data, calls print method.
+     */
+    public void sortData() {
+        for (int i = 0; i < stateList.getLength(); i++) {
+            
+            State state = stateList.getEntry(i);
+            LinkedList<Race> races = state.getRaces();
+            
+            System.out.println(state.getName());
+            
+            AlphaSort alpha = new AlphaSort();
+            races.insertionSort(alpha);
+            printData(state, races);
+            
+            CFRSort cfr = new CFRSort();
+            races.insertionSort(cfr);
+            printData(state, races);
+
+        }
+    }
+    
+    
+    /**
+     * Prints data.
+     * @param state State to print name.
+     * @param races Linked list of sorted races in the state.
+     */
+    private void printData(State state, LinkedList<Race> races) {
+        for (int j = 0; j < races.getLength(); j++) {
+            System.out.println(races.getEntry(j).toString());
+        }
+        System.out.println("=====");
     }
 
 }
