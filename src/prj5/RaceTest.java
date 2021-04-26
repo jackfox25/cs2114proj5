@@ -1,12 +1,20 @@
 package prj5;
 
+import student.TestCase;
+
 /**
  * Tests the methods in Race
  * 
  * @author Ethan Homoroc (homorocethanj22)
  * @version 04.23.21
  */
-public class RaceTest extends student.TestCase {
+
+//As a Hokie, I will conduct myself with honor and integrity at all times.
+//I will not lie, cheat, or steal, nor will I accept the actions of those who
+//do.
+//-- Ethan Homoroc (homorocethanj22)
+
+public class RaceTest extends TestCase {
 
     private Race race1;
     private Race race2;

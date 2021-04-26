@@ -7,6 +7,12 @@ package prj5;
  * @author Giri Ganta (gantagiri4)
  * @version 2021.04.19
  */
+
+//As a Hokie, I will conduct myself with honor and integrity at all times.
+//I will not lie, cheat, or steal, nor will I accept the actions of those who
+//do.
+//-- Giri Ganta (gantagiri4)
+
 public class State {
     // fields
     private String name;
@@ -17,7 +23,7 @@ public class State {
     /**
      * Makes a new State Object.
      * 
-     * @param name
+     * @param stateName
      *            the name of the state.
      * @param race
      *            races in an array
@@ -72,8 +78,8 @@ public class State {
     public LinkedList<Race> getRaces() {
         return races;
     }
-    
-    
+
+
     /**
      * Sets totalCases field.
      */
@@ -86,8 +92,8 @@ public class State {
             totalCases += addToField;
         }
     }
-    
-    
+
+
     /**
      * Sets totalDeaths field.
      */

@@ -3,6 +3,22 @@ package prj5;
 import java.util.Comparator;
 import list.ListInterface;
 
+/**
+ * Linked list implementation, featuring a nested Node class as well as sort
+ * methods.
+ * 
+ * @author Giri Ganta (gantagiri4)
+ * @version 2021.04.23
+ *
+ * @param <T>
+ *            Type held in list
+ */
+
+// As a Hokie, I will conduct myself with honor and integrity at all times.
+// I will not lie, cheat, or steal, nor will I accept the actions of those who
+// do.
+// -- Giri Ganta (gantagiri4)
+
 public class LinkedList<T> implements ListInterface<T> {
 
     /**
@@ -10,6 +26,9 @@ public class LinkedList<T> implements ListInterface<T> {
      * 
      * @author Giri Ganta (gantagiri4)
      * @version 2021.04.23
+     * 
+     * @param <D>
+     *            Type held in node.
      */
     public static class Node<D> {
 
@@ -104,7 +123,7 @@ public class LinkedList<T> implements ListInterface<T> {
      * @precondition anEntry cannot be null
      * @param index
      *            where to add the object
-     * @param obj
+     * @param anEntry
      *            the object to add
      * @throws IndexOutOfBoundsException
      *             if index is less than zero or greater than size
@@ -170,7 +189,7 @@ public class LinkedList<T> implements ListInterface<T> {
     /**
      * Checks if the list contains the given object
      *
-     * @param obj
+     * @param anEntry
      *            the object to check for
      * @return true if it contains the object
      */
@@ -387,7 +406,7 @@ public class LinkedList<T> implements ListInterface<T> {
     /**
      * Gets the last time the given object is in the list
      *
-     * @param obj
+     * @param anEntry
      *            the object to look for
      * @return the last position of it. -1 If it is not in the list
      */
@@ -419,6 +438,9 @@ public class LinkedList<T> implements ListInterface<T> {
     /**
      * Split the list into sorted and unsorted and iterates through unsorted to
      * insert into sorted
+     * 
+     * @param comp
+     *            Comparator<Race> used for sorting the list.
      */
     public void insertionSort(Comparator<Race> comp) {
         if (getLength() > 1) {
@@ -439,6 +461,9 @@ public class LinkedList<T> implements ListInterface<T> {
      * Helper method to insert node into proper location
      * 
      * @param nodeToInsert
+     *            Node being inserted.
+     * @param comp
+     *            Comparator<Race> used for sorting the list.
      */
     public void insertIntoSorted(Node<T> nodeToInsert, Comparator<Race> comp) {
         Race data = (Race)nodeToInsert.getData();

@@ -1,6 +1,5 @@
 package prj5;
 
-import java.math.RoundingMode;
 import java.text.DecimalFormat;
 
 /**
@@ -10,6 +9,12 @@ import java.text.DecimalFormat;
  * @version 04.21.21
  *
  */
+
+//As a Hokie, I will conduct myself with honor and integrity at all times.
+//I will not lie, cheat, or steal, nor will I accept the actions of those who
+//do.
+//-- Ethan Homoroc (homorocethanj22)
+
 public class Race {
 
     private String name;
@@ -96,7 +101,7 @@ public class Race {
         }
 
         DecimalFormat df = new DecimalFormat("##.#");
-        df.setRoundingMode(RoundingMode.DOWN);
+        //df.setRoundingMode(RoundingMode.DOWN);
         double cfr = ((double)deaths / (double)cases) * 100;
         return Double.parseDouble(df.format(cfr));
     }

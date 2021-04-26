@@ -9,6 +9,12 @@ import java.util.Arrays;
  * @author Giri Ganta (gantagiri4)
  * @version 2021.04.23
  */
+
+// As a Hokie, I will conduct myself with honor and integrity at all times.
+// I will not lie, cheat, or steal, nor will I accept the actions of those who
+// do.
+// -- Giri Ganta (gantagiri4)
+
 public class LinkedListTest extends student.TestCase {
     // fields
     private LinkedList<String> emptyListA;

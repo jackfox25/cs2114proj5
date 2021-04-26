@@ -6,7 +6,7 @@ package prj5;
 import student.TestCase;
 
 /**
- * Tests the AlphaSort comparator class.
+ * Tests the CFRSort comparator class.
  * 
  * @author Jack Fox (jackf19)
  * @version 2021.04.26
@@ -18,7 +18,7 @@ import student.TestCase;
 // do.
 // -- Jack Fox (jackf19)
 
-public class AlphaSortTest extends TestCase {
+public class CFRSortTest extends TestCase {
 
     /**
      * Creates test scenario.
@@ -32,15 +32,15 @@ public class AlphaSortTest extends TestCase {
      * Tests compare method.
      */
     public void testCompare() {
-        Race r1 = new Race("white", 1, 1);
-        Race r2 = new Race("asian", 1, 1);
-        Race r3 = new Race("latinx", 1, 1);
+        Race r1 = new Race("white", 2, 1);
+        Race r2 = new Race("asian", 3, 1);
+        Race r3 = new Race("latinx", 4, 1);
 
-        AlphaSort alpha = new AlphaSort();
+        CFRSort cfr = new CFRSort();
 
-        assertTrue(alpha.compare(r3, r2) > 0);
-        assertEquals(alpha.compare(r3, r3), 0);
-        assertTrue(alpha.compare(r3, r1) < 0);
+        assertTrue(cfr.compare(r2, r1) > 0);
+        assertEquals(cfr.compare(r2, r2), 0);
+        assertTrue(cfr.compare(r2, r3) < 0);
     }
 
 }

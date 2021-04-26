@@ -1,8 +1,6 @@
 package prj5;
 
 import java.io.*;
-import java.util.Scanner;
-import bsh.ParseException;
 
 /**
  * Parses data from input file.
@@ -26,10 +24,9 @@ public class CovidReader {
      * 
      * @param file
      *            Input file
+     * @throws IOException
      */
-    public CovidReader(String file)
-        throws FileNotFoundException,
-        ParseException {
+    public CovidReader(String file) throws IOException {
 
         stateList = readStates(file);
 
@@ -43,28 +40,22 @@ public class CovidReader {
      * @param file
      *            Input file.
      * @return LinkedList of State objects.
-     * @throws FileNotFoundException
      * @throws ParseException
+     * @throws IOException
      */
-    private LinkedList<State> readStates(String fileName)
-        throws FileNotFoundException,
-        ParseException {
+    private LinkedList<State> readStates(String fileName) throws IOException {
         File f = new File(fileName);
-        Scanner file = new Scanner(f);
+        BufferedReader br = new BufferedReader(new FileReader(fileName));
 
         LinkedList<State> stateList = new LinkedList<State>();
 
         // skips description line in file
-        file.nextLine();
+        br.readLine();
 
-        while (file.hasNextLine()) {
-            String nextIn = file.nextLine();
-            String[] parsedIn = nextIn.split(", *");
-            if (parsedIn.length != 11) {
-                file.close();
-                throw new ParseException("incorrect data format");
-            }
+        String nextIn = "";
 
+        while ((nextIn = br.readLine()) != null) {
+            String[] parsedIn = nextIn.split(",");
             String stateName = parsedIn[0];
 
             String[] rNames = { "white", "black", "latinx", "asian", "other" };
@@ -92,7 +83,7 @@ public class CovidReader {
 
         }
 
-        file.close();
+        br.close();
         return stateList;
     }
 
@@ -112,28 +103,31 @@ public class CovidReader {
      */
     public void sortData() {
         for (int i = 0; i < stateList.getLength(); i++) {
-            
+
             State state = stateList.getEntry(i);
             LinkedList<Race> races = state.getRaces();
-            
+
             System.out.println(state.getName());
-            
+
             AlphaSort alpha = new AlphaSort();
             races.insertionSort(alpha);
             printData(state, races);
-            
+
             CFRSort cfr = new CFRSort();
             races.insertionSort(cfr);
             printData(state, races);
 
         }
     }
-    
-    
+
+
     /**
      * Prints data.
-     * @param state State to print name.
-     * @param races Linked list of sorted races in the state.
+     * 
+     * @param state
+     *            State to print name.
+     * @param races
+     *            Linked list of sorted races in the state.
      */
     private void printData(State state, LinkedList<Race> races) {
         for (int j = 0; j < races.getLength(); j++) {

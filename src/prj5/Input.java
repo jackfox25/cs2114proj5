@@ -3,7 +3,7 @@
  */
 package prj5;
 
-import java.io.FileNotFoundException;
+import java.io.IOException;
 import bsh.ParseException;
 
 /**
@@ -35,14 +35,17 @@ public class Input {
      * @param args
      *            Input file.
      * @throws ParseException
-     * @throws FileNotFoundException
+     * @throws IOException
      */
-    public static void main(String[] args)
-        throws FileNotFoundException,
-        ParseException {
+    public static void main(String[] args) throws IOException {
         if (args.length == 1) {
             String file = args[0];
-            CovidReader covRead = new CovidReader(file);
+            try {
+                CovidReader covRead = new CovidReader(file);
+            }
+            catch (Exception e) {
+                System.out.println("Input file is unreadable.");
+            }
         }
 
     }

@@ -10,6 +10,12 @@ import java.util.Comparator;
  * @version 2021.04.23
  *
  */
+
+// As a Hokie, I will conduct myself with honor and integrity at all times.
+// I will not lie, cheat, or steal, nor will I accept the actions of those who
+// do.
+// -- Jack Fox (jackf19)
+
 public class CFRSort implements Comparator<Race> {
 
     /**
@@ -21,8 +27,13 @@ public class CFRSort implements Comparator<Race> {
      *            second race
      * @return compareTo value
      */
-    public int compare(Race y, Race x) {
-        return (int)((x.getCFR() - y.getCFR()) * 100);
+    public int compare(Race x, Race y) {
+        int result = (int)((y.getCFR() - x.getCFR()) * 100);
+        if (result == 0) {
+            AlphaSort alpha = new AlphaSort();
+            return alpha.compare(x, y);
+        }
+        return result;
     }
-    
+
 }
