@@ -78,6 +78,28 @@ public class CovidWindow {
         window.addButton(va, WindowSide.SOUTH);
         va.onClick(this, "clickedVA");
 
+        this.black = new TextShape(215, 225, "asian");
+        this.white = new TextShape(465, 225, "latinx");
+        this.asian = new TextShape(90, 225, "black");
+        this.latinx = new TextShape(340, 225, "white");
+        this.other = new TextShape(590, 225, "other");
+        window.addShape(black);
+        window.addShape(white);
+        window.addShape(asian);
+        window.addShape(latinx);
+        window.addShape(other);
+
+        Shape[] bar = new Shape[5];
+        bar[0] = new Shape(100, 100, 16, 120, Color.BLUE);
+        bar[1] = new Shape(225, 100, 16, 120, Color.BLUE);
+        bar[2] = new Shape(350, 100, 16, 120, Color.BLUE);
+        bar[3] = new Shape(475, 100, 16, 120, Color.BLUE);
+        bar[4] = new Shape(600, 100, 16, 120, Color.BLUE);
+        window.addShape(bar[0]);
+        window.addShape(bar[1]);
+        window.addShape(bar[2]);
+        window.addShape(bar[3]);
+        window.addShape(bar[4]);
     }
 
 
