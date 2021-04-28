@@ -30,7 +30,7 @@ public class CovidReader {
 
         stateList = readStates(file);
 
-        sortData();
+        // sortData(); (for intermediate submission)
     }
 
 
@@ -97,43 +97,62 @@ public class CovidReader {
         return stateList;
     }
 
-
+    
     /**
-     * Sorts data, calls print method.
-     */
-    public void sortData() {
-        for (int i = 0; i < stateList.getLength(); i++) {
-
-            State state = stateList.getEntry(i);
-            LinkedList<Race> races = state.getRaces();
-
-            System.out.println(state.getName());
-
-            AlphaSort alpha = new AlphaSort();
-            races.insertionSort(alpha);
-            printData(state, races);
-
-            CFRSort cfr = new CFRSort();
-            races.insertionSort(cfr);
-            printData(state, races);
-
-        }
-    }
-
-
-    /**
-     * Prints data.
-     * 
+     * Sorts the state's Race data using the AlphaSort comparator.
      * @param state
-     *            State to print name.
-     * @param races
-     *            Linked list of sorted races in the state.
      */
-    private void printData(State state, LinkedList<Race> races) {
-        for (int j = 0; j < races.getLength(); j++) {
-            System.out.println(races.getEntry(j).toString());
-        }
-        System.out.println("=====");
+    public void sortAlpha(State state) {
+        AlphaSort alpha = new AlphaSort();
+        state.getRaces().insertionSort(alpha);
     }
+    
+    /**
+     * Sorts the state's Race data using the CFRSort comparator.
+     * @param state
+     */
+    public void sortCFR(State state) {
+        CFRSort cfr = new CFRSort();
+        state.getRaces().insertionSort(cfr);
+    }
+
+// FOR INTERMEDIATE SUBMISSION
+//    /**
+//     * Sorts data, calls print method.
+//     */
+//    public void sortData() {
+//        for (int i = 0; i < stateList.getLength(); i++) {
+//
+//            State state = stateList.getEntry(i);
+//            LinkedList<Race> races = state.getRaces();
+//
+//            System.out.println(state.getName());
+//
+//            AlphaSort alpha = new AlphaSort();
+//            races.insertionSort(alpha);
+//            // printData(state, races);
+//
+//            CFRSort cfr = new CFRSort();
+//            races.insertionSort(cfr);
+//            // printData(state, races);
+//
+//        }
+//    }
+
+// FOR INTERMEDIATE SUBMISSION
+//    /**
+//     * Prints data.
+//     * 
+//     * @param state
+//     *            State to print name.
+//     * @param races
+//     *            Linked list of sorted races in the state.
+//     */
+//    private void printData(State state, LinkedList<Race> races) {
+//        for (int j = 0; j < races.getLength(); j++) {
+//            System.out.println(races.getEntry(j).toString());
+//        }
+//        System.out.println("=====");
+//    }
 
 }

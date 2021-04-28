@@ -42,10 +42,16 @@ public class Input {
             String file = args[0];
             try {
                 CovidReader covRead = new CovidReader(file);
+                GUICovidWindow window = new GUICovidWindow(covRead);
             }
             catch (Exception e) {
                 System.out.println("Input file is unreadable.");
             }
+        }
+        else {
+            CovidReader covRead = new CovidReader(
+                "Cases_and_Deaths_by_race_CRDT_Sep2020.csv");
+            GUICovidWindow window = new GUICovidWindow(covRead);
         }
 
     }
