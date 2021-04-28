@@ -11,18 +11,21 @@ import cs2.WindowSide;
  * Display window: manipulates and updates graphics.
  * 
  * @author Ethan Homoroc (homorocethanj22)
+ * @author Jack Fox (jackf19)
  * @version 4.23.2021
  */
 
 // As a Hokie, I will conduct myself with honor and integrity at all times.
 // I will not lie, cheat, or steal, nor will I accept the actions of those who
 // do.
-// -- Ethan Homoroc (homorocethanj22)
+// -- Ethan Homoroc (homorocethanj22), Jack Fox (jackf19)
 
 public class GUICovidWindow {
 
     private CovidReader covReader;
     private Window window;
+
+    private State currentDisplay;
 
     private Button quit;
     private Button sortByCFR;
@@ -43,12 +46,13 @@ public class GUICovidWindow {
     private static final int BAR_Y = 100;
     private static final int BAR_WIDTH = 16;
     private static final int BAR_MAX_HEIGHT = 120;
-
     private static final String TITLE_STR = " Case Fatality Ratios by Race";
-    private State currentDisplay;
 
     /**
-     * CovidWindow Constructor
+     * CovidWindow constructor, takes in the CovidReader as a parameter.
+     * 
+     * @param covRead
+     *            CovidReader that houses data.
      */
     public GUICovidWindow(CovidReader covRead) {
 
@@ -93,17 +97,17 @@ public class GUICovidWindow {
         va.onClick(this, "clickedVA");
 
         // SHAPE SETUP
-
         bars = new Shape[5];
         barRaceLabels = new TextShape[5];
         barCFRLabels = new TextShape[5];
 
+        // State whose data is being displayed. Window is blank when opened.
         currentDisplay = null;
     }
 
 
     /**
-     * Called when "Represent DC" is clicked.
+     * Calls draw() to plot DC data.
      * 
      * @param b
      *            button
@@ -115,7 +119,7 @@ public class GUICovidWindow {
 
 
     /**
-     * Called when "Represent GA" is clicked.
+     * Calls draw() to plot GA data.
      * 
      * @param b
      *            button
@@ -127,7 +131,7 @@ public class GUICovidWindow {
 
 
     /**
-     * Called when "Represent MD" is clicked.
+     * Calls draw() to plot MD data.
      * 
      * @param b
      *            button
@@ -139,7 +143,7 @@ public class GUICovidWindow {
 
 
     /**
-     * Called when "Represent NC" is clicked.
+     * Calls draw() to plot NC data.
      * 
      * @param b
      *            button
@@ -151,7 +155,7 @@ public class GUICovidWindow {
 
 
     /**
-     * Called when "Represent TN" is clicked.
+     * Calls draw() to plot TN data.
      * 
      * @param b
      *            button
@@ -163,7 +167,7 @@ public class GUICovidWindow {
 
 
     /**
-     * Called when "Represent VA" is clicked.
+     * Calls draw() to plot VA data.
      * 
      * @param b
      *            button
@@ -175,7 +179,7 @@ public class GUICovidWindow {
 
 
     /**
-     * Called when "Sort By Alpha" is clicked.
+     * Sorts data using AlphaSort comparator, calls draw().
      * 
      * @param b
      *            button
@@ -189,7 +193,7 @@ public class GUICovidWindow {
 
 
     /**
-     * Called when "Sort by CFR" is clicked.
+     * Sorts data using CFRSort comparator, calls draw().
      * 
      * @param b
      *            button
@@ -203,7 +207,7 @@ public class GUICovidWindow {
 
 
     /**
-     * Called when "Quit" is clicked.
+     * Closes window.
      * 
      * @param b
      *            button
@@ -214,7 +218,7 @@ public class GUICovidWindow {
 
 
     /**
-     * Draws bars and labels on the screen according to Race data.
+     * Draws bars and labels on the display according to Race data.
      * 
      * @param raceList
      *            Race data.
@@ -225,7 +229,8 @@ public class GUICovidWindow {
         clearDisplay();
 
         LinkedList<Race> raceList = currentDisplay.getRaces();
-        double maxCFR = findMaxCFR(raceList);
+        double maxCFR = findMaxCFR(raceList); // for calculating relative bar
+                                              // heights
 
         // creates title
         title = new TextShape(0, 0, currentDisplay.getName() + TITLE_STR);
@@ -275,7 +280,7 @@ public class GUICovidWindow {
 
 
     /**
-     * Wipes bars and bar labels from the display.
+     * Wipes bars and bar labels from the display using helper method below.
      */
     private void clearDisplay() {
         for (Shape sh : bars) {
@@ -308,8 +313,8 @@ public class GUICovidWindow {
 
 
     /**
-     * Finds the maximum CFR in the list in order to calculate the relative
-     * heights of the bars.
+     * Helper method that finds the maximum CFR in the list in order to
+     * calculate the relative heights of the bars.
      * 
      * @param raceList
      *            LinkedList of Races to check.

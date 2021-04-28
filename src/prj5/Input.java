@@ -48,6 +48,8 @@ public class Input {
                 System.out.println("Input file is unreadable.");
             }
         }
+        
+        //default, no input arguments
         else {
             CovidReader covRead = new CovidReader(
                 "Cases_and_Deaths_by_race_CRDT_Sep2020.csv");

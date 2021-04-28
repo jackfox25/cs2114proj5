@@ -44,9 +44,8 @@ public class CovidReader {
      * @throws IOException
      */
     private LinkedList<State> readStates(String fileName) throws IOException {
-        File f = new File(fileName);
+        
         BufferedReader br = new BufferedReader(new FileReader(fileName));
-
         LinkedList<State> stateList = new LinkedList<State>();
 
         // skips description line in file
@@ -55,9 +54,10 @@ public class CovidReader {
         String nextIn = "";
 
         while ((nextIn = br.readLine()) != null) {
+            // creates string array of data
             String[] parsedIn = nextIn.split(",");
+            
             String stateName = parsedIn[0];
-
             String[] rNames = { "white", "black", "latinx", "asian", "other" };
             LinkedList<Race> raceData = new LinkedList<Race>();
 
@@ -65,19 +65,20 @@ public class CovidReader {
                 // grab race name
                 String rName = rNames[i];
 
-                // parse cases
+                // parse cases (set to -1 if data is "NA")
                 String cStr = parsedIn[i + 1];
                 int cNum = cStr.equals("NA") ? -1 : Integer.valueOf(cStr);
 
-                // parse deaths
+                // parse deaths (set to -1 if data is "NA")
                 String dStr = parsedIn[i + 6];
                 int dNum = dStr.equals("NA") ? -1 : Integer.valueOf(dStr);
 
+                // create race
                 Race race_i = new Race(rName, cNum, dNum);
                 raceData.add(race_i);
-                ;
             }
 
+            // create state
             State newState = new State(stateName, raceData);
             stateList.add(newState);
 
