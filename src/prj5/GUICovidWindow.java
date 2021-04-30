@@ -7,25 +7,26 @@ import cs2.Shape;
 import cs2.TextShape;
 import cs2.WindowSide;
 
+// Include these if you want to full screen the window.
+// import java.awt.Dimension;
+// import java.awt.Toolkit;
+
 /**
  * Display window: manipulates and updates graphics.
  * 
  * @author Ethan Homoroc (homorocethanj22)
- * @author Jack Fox (jackf19)
  * @version 4.23.2021
  */
 
 // As a Hokie, I will conduct myself with honor and integrity at all times.
 // I will not lie, cheat, or steal, nor will I accept the actions of those who
 // do.
-// -- Ethan Homoroc (homorocethanj22), Jack Fox (jackf19)
+// -- Ethan Homoroc (homorocethanj22)
 
 public class GUICovidWindow {
 
     private CovidReader covReader;
     private Window window;
-
-    private State currentDisplay;
 
     private Button quit;
     private Button sortByCFR;
@@ -42,17 +43,14 @@ public class GUICovidWindow {
     private TextShape[] barRaceLabels;
     private TextShape[] barCFRLabels;
 
-    private static final int[] BAR_X = { 100, 225, 350, 475, 600 };
-    private static final int BAR_Y = 100;
-    private static final int BAR_WIDTH = 16;
-    private static final int BAR_MAX_HEIGHT = 120;
+    private static final int BAR_Y = 50;
+    private static final int BAR_WIDTH = 20;
+
     private static final String TITLE_STR = " Case Fatality Ratios by Race";
+    private State currentDisplay;
 
     /**
-     * CovidWindow constructor, takes in the CovidReader as a parameter.
-     * 
-     * @param covRead
-     *            CovidReader that houses data.
+     * CovidWindow Constructor
      */
     public GUICovidWindow(CovidReader covRead) {
 
@@ -97,17 +95,24 @@ public class GUICovidWindow {
         va.onClick(this, "clickedVA");
 
         // SHAPE SETUP
+
         bars = new Shape[5];
         barRaceLabels = new TextShape[5];
         barCFRLabels = new TextShape[5];
 
-        // State whose data is being displayed. Window is blank when opened.
         currentDisplay = null;
+
+        // To put the window in full screen.
+        // Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        // double width = screenSize.getWidth();
+        // double height = screenSize.getHeight();
+        // window.setSize((int)width, (int)height);
+
     }
 
 
     /**
-     * Calls draw() to plot DC data.
+     * Called when "Represent DC" is clicked.
      * 
      * @param b
      *            button
@@ -119,7 +124,7 @@ public class GUICovidWindow {
 
 
     /**
-     * Calls draw() to plot GA data.
+     * Called when "Represent GA" is clicked.
      * 
      * @param b
      *            button
@@ -131,7 +136,7 @@ public class GUICovidWindow {
 
 
     /**
-     * Calls draw() to plot MD data.
+     * Called when "Represent MD" is clicked.
      * 
      * @param b
      *            button
@@ -143,7 +148,7 @@ public class GUICovidWindow {
 
 
     /**
-     * Calls draw() to plot NC data.
+     * Called when "Represent NC" is clicked.
      * 
      * @param b
      *            button
@@ -155,7 +160,7 @@ public class GUICovidWindow {
 
 
     /**
-     * Calls draw() to plot TN data.
+     * Called when "Represent TN" is clicked.
      * 
      * @param b
      *            button
@@ -167,7 +172,7 @@ public class GUICovidWindow {
 
 
     /**
-     * Calls draw() to plot VA data.
+     * Called when "Represent VA" is clicked.
      * 
      * @param b
      *            button
@@ -179,7 +184,7 @@ public class GUICovidWindow {
 
 
     /**
-     * Sorts data using AlphaSort comparator, calls draw().
+     * Called when "Sort By Alpha" is clicked.
      * 
      * @param b
      *            button
@@ -193,7 +198,7 @@ public class GUICovidWindow {
 
 
     /**
-     * Sorts data using CFRSort comparator, calls draw().
+     * Called when "Sort by CFR" is clicked.
      * 
      * @param b
      *            button
@@ -207,7 +212,7 @@ public class GUICovidWindow {
 
 
     /**
-     * Closes window.
+     * Called when "Quit" is clicked.
      * 
      * @param b
      *            button
@@ -218,24 +223,36 @@ public class GUICovidWindow {
 
 
     /**
-     * Draws bars and labels on the display according to Race data.
+     * Draws bars and labels on the screen according to Race data.
      * 
      * @param raceList
      *            Race data.
      */
     private void draw() {
-
         // clears existing bars
         clearDisplay();
 
         LinkedList<Race> raceList = currentDisplay.getRaces();
-        double maxCFR = findMaxCFR(raceList); // for calculating relative bar
-                                              // heights
+        double maxCFR = findMaxCFR(raceList);
 
         // creates title
         title = new TextShape(0, 0, currentDisplay.getName() + TITLE_STR);
-        title.moveTo(window.getWidth() / 2 - title.getWidth() / 2, 25);
+        title.moveTo((window.getWidth() - title.getWidth()) / 2, 25);
         window.addShape(title);
+
+        int tWindowWidth = window.getWidth() - 100;
+
+        int spaceWidth = (tWindowWidth / 6) - 1;
+
+        int[] startPoints = new int[5];
+        for (int i = 0; i < 5; i++) {
+            if (i == 0) {
+                startPoints[i] = spaceWidth;
+            }
+            else {
+                startPoints[i] = startPoints[i - 1] + spaceWidth + BAR_WIDTH;
+            }
+        }
 
         for (int i = 0; i < raceList.getLength(); i++) {
 
@@ -243,25 +260,27 @@ public class GUICovidWindow {
 
             // calculates height for each bar
             double htFactor = race.getCFR() / maxCFR;
-            int height = (int)(BAR_MAX_HEIGHT * htFactor);
+            int totalBarHeight = window.getHeight() - 230;
+            int height = (int)(totalBarHeight * htFactor);
 
             // creates bars
             if (race.getCFR() != -1) {
-                bars[i] = new Shape(BAR_X[i], BAR_Y + BAR_MAX_HEIGHT - height,
-                    BAR_WIDTH, height, Color.BLUE);
+                bars[i] = new Shape(startPoints[i], BAR_Y + totalBarHeight
+                    - height, BAR_WIDTH, height, Color.BLUE);
                 window.addShape(bars[i]);
             }
             else { // when CFR == 1:
                 TextShape na = new TextShape(0, 0, "NA");
-                na.moveTo(BAR_X[i], BAR_Y + BAR_MAX_HEIGHT - na.getHeight());
+                na.moveTo(startPoints[i], BAR_Y + totalBarHeight - na
+                    .getHeight());
                 bars[i] = na;
                 window.addShape(na);
             }
 
             // creates race labels
             TextShape raceLabel = new TextShape(0, 0, race.getName());
-            raceLabel.moveTo(BAR_X[i] + (BAR_WIDTH / 2) - raceLabel.getWidth()
-                / 2, 230);
+            raceLabel.moveTo(startPoints[i] + (BAR_WIDTH / 2) - raceLabel
+                .getWidth() / 2, BAR_Y + totalBarHeight + 20);
             barRaceLabels[i] = raceLabel;
             window.addShape(raceLabel);
 
@@ -269,8 +288,8 @@ public class GUICovidWindow {
             if (race.getCFR() != -1) {
                 TextShape cfrLabel = new TextShape(0, 0, String.valueOf(race
                     .getCFR()) + "%");
-                cfrLabel.moveTo(BAR_X[i] + (BAR_WIDTH / 2) - cfrLabel.getWidth()
-                    / 2, 250);
+                cfrLabel.moveTo(startPoints[i] + (BAR_WIDTH / 2) - cfrLabel
+                    .getWidth() / 2, BAR_Y + totalBarHeight + 40);
                 barCFRLabels[i] = cfrLabel;
                 window.addShape(cfrLabel);
             }
@@ -280,7 +299,7 @@ public class GUICovidWindow {
 
 
     /**
-     * Wipes bars and bar labels from the display using helper method below.
+     * Wipes bars and bar labels from the display.
      */
     private void clearDisplay() {
         for (Shape sh : bars) {
@@ -313,8 +332,8 @@ public class GUICovidWindow {
 
 
     /**
-     * Helper method that finds the maximum CFR in the list in order to
-     * calculate the relative heights of the bars.
+     * Finds the maximum CFR in the list in order to calculate the relative
+     * heights of the bars.
      * 
      * @param raceList
      *            LinkedList of Races to check.
