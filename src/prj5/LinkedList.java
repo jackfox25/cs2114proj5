@@ -458,14 +458,14 @@ public class LinkedList<T> implements ListInterface<T> {
 
 
     /**
-     * Helper method to insert node into proper location
+     * Private helper method to insert node into proper location
      * 
      * @param nodeToInsert
      *            Node being inserted.
      * @param comp
      *            Comparator<Race> used for sorting the list.
      */
-    public void insertIntoSorted(Node<T> nodeToInsert, Comparator<Race> comp) {
+    private void insertIntoSorted(Node<T> nodeToInsert, Comparator<Race> comp) {
         Race data = (Race)nodeToInsert.getData();
         Node<T> current = head;
         Node<T> previous = null;

@@ -45,16 +45,16 @@ public class CovidReaderTest extends TestCase {
         assertEquals("DC", state1.getName());
         LinkedList<Race> raceList1 = state1.getRaces();
         Race race1s1 = raceList1.getEntry(0);
-        assertEquals(179563, race1s1.getCases());
-        assertEquals(13365, race1s1.getDeaths());
-        assertEquals("black", race1s1.getName());
+        assertEquals(70678, race1s1.getCases());
+        assertEquals(1924, race1s1.getDeaths());
+        assertEquals("white", race1s1.getName());
 
         State state4 = stateList.getEntry(3);
         LinkedList<Race> raceList4 = state4.getRaces();
         Race race3s4 = raceList4.getEntry(2);
-        assertEquals(41305, race3s4.getCases());
-        assertEquals(727, race3s4.getDeaths());
-        assertEquals("asian", race3s4.getName());
+        assertEquals(787616, race3s4.getCases());
+        assertEquals(-1, race3s4.getDeaths());
+        assertEquals("latinx", race3s4.getName());
 
         assertEquals(6, stateList.getLength());
         assertEquals(5, state1.getRaces().getLength());

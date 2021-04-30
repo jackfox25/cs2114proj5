@@ -98,15 +98,23 @@ public class LinkedListTest extends student.TestCase {
         assertEquals(pets.getEntry(0), "hamster");
 
         Exception exception = null;
-
         try {
             pets.add(2, "ferret");
         }
         catch (Exception e) {
             exception = e;
         }
-
         assertNotNull(exception);
+        assertTrue(exception instanceof IndexOutOfBoundsException);
+        exception = null;
+        try {
+            pets.add(-1, "ferret");
+        } 
+        catch (Exception e) {
+            exception = e;
+        }
+        assertNotNull(exception);
+        assertTrue(exception instanceof IndexOutOfBoundsException);
 
         smallListB.add(3, "basketball");
         assertEquals(4, smallListB.getLength());
@@ -140,6 +148,7 @@ public class LinkedListTest extends student.TestCase {
 
         emptyListA.add(0, "bob");
         assertEquals("bob", emptyListA.getEntry(0));
+        emptyListA.add(0, "karl");
     }
 
 
@@ -150,6 +159,8 @@ public class LinkedListTest extends student.TestCase {
         assertEquals(3, smallListA.getLength());
         smallListA.clear();
         assertEquals(0, smallListA.getLength());
+        emptyListA.clear();
+        assertEquals(0, emptyListA.getLength());
     }
 
 
@@ -178,15 +189,24 @@ public class LinkedListTest extends student.TestCase {
 
         Exception exception = null;
         try {
-            emptyListA.getEntry(0);
+            emptyListA.getEntry(-1);
             fail("get() is not throwing an exception when it should");
         }
         catch (Exception e) {
             exception = e;
         }
-
-        assertTrue("get() is throwing the wrong type of exceptions",
-            exception instanceof IndexOutOfBoundsException);
+        assertNotNull(exception);
+        assertTrue(exception instanceof IndexOutOfBoundsException);
+        exception = null;
+        try {
+            emptyListA.getEntry(5);
+            fail("get() is not throwing an exception when it should");
+        }
+        catch (Exception e) {
+            exception = e;
+        }
+        assertNotNull(exception);
+        assertTrue(exception instanceof IndexOutOfBoundsException);
 
     }
 
@@ -281,6 +301,9 @@ public class LinkedListTest extends student.TestCase {
             exception2 = e;
         }
         assertNotNull(exception2);
+        
+        smallListB.replace(0, "replacement");
+        assertEquals(smallListB.getEntry(0), "replacement");
     }
 
 
@@ -434,6 +457,37 @@ public class LinkedListTest extends student.TestCase {
         assertEquals(4, pets.lastIndexOf("snake"));
         assertEquals(-1, pets.lastIndexOf("tiger"));
 
+    }
+    
+    /**
+     * tests insertionSort() method
+     */
+    public void testInsertionSort() {
+        Race race1 = new Race("B_race1", 1, 2);
+        Race race2 = new Race("A_race2", 3, 4);
+        LinkedList<Race> races1 = new LinkedList<Race>();
+        races1.add(race1);
+        races1.add(race2);
+        
+        LinkedList<Race> races2 = new LinkedList<Race>();
+        races2.add(race1);
+        
+        LinkedList<Race> races3 = new LinkedList<Race>();
+        LinkedList<Race> races4 = new LinkedList<Race>();
+        
+        AlphaSort alpha = new AlphaSort();
+        races1.insertionSort(alpha);
+        
+        assertEquals(race2, races1.getEntry(0));
+        assertEquals(2, races1.getLength());
+        
+        races2.insertionSort(alpha);
+        assertEquals(1, races2.getLength());
+        
+        races3.insertionSort(alpha);
+        races4.add(race2);
+        races4.add(race1);
+        races4.insertionSort(alpha);
     }
 
 }

@@ -80,6 +80,9 @@ public class RaceTest extends TestCase {
         race1.setCases(1);
         assertEquals(100.0, race1.getCFR(), .1);
         assertEquals(-1.0, race2.getCFR(), .1);
+        
+        Race race4 = new Race("neg deaths", 2, -1);
+        assertEquals(-1.0, race4.getCFR(), .1);
     }
 
 
